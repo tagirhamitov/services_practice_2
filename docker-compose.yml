@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  mafia_server:
+    build:
+      context: .
+      dockerfile: mafia_server.dockerfile
+    ports:
+      - "9000:9000"
+
+  mafia_bot_1:
+    build:
+      context: .
+      dockerfile: mafia_client.dockerfile
+    entrypoint: /app --auto --username player_1 --server mafia_server:9000
+
+  mafia_bot_2:
+    build:
+      context: .
+      dockerfile: mafia_client.dockerfile
+    entrypoint: /app --auto --username player_2 --server mafia_server:9000
+
+  mafia_bot_3:
+    build:
+      context: .
+      dockerfile: mafia_client.dockerfile
+    entrypoint: /app --auto --username player_3 --server mafia_server:9000
